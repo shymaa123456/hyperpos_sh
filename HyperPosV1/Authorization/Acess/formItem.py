@@ -22,13 +22,11 @@ class CL_formItem(QtWidgets.QDialog):
         sql_select_query = "select ITEM_DESC , ITEM_STATUS from SYS_FORM_ITEM where FORM_ID = 2"
         mycursor.execute(sql_select_query)
         records = mycursor.fetchall()
-        # self.tableWidget.setRowCount(0)
-        print(records)
         for row_number, row_data in enumerate(records):
             self.w1.insertRow(row_number)
-            print(row_data)
+
             for column_number, data in enumerate(row_data):
-                print(data)
+
                 self.w1.setItem(row_number, column_number, QTableWidgetItem(str(data)))
         # self.w1.setItem(0, 0, QTableWidgetItem("Name"))
         connection.close()

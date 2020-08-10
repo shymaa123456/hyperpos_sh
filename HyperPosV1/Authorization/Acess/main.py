@@ -15,6 +15,9 @@ from Role import CL_role
 from privilage import CL_privilage
 
 
+from HyperPosV1.Authorization.Acess.formItem import CL_formItem
+
+
 class CL_main(QtWidgets.QMainWindow):
     switch_window = QtCore.pyqtSignal()
 
@@ -34,6 +37,7 @@ class CL_main(QtWidgets.QMainWindow):
         self.QA_Create_Form.triggered.connect(self.FN_create_form)
         self.QA_Modify_Form.triggered.connect(self.FN_modify_form)
 
+        self.QA_Create_Form_Item.triggered.connect(self.FN_create_form_item)
     def FN_actionClicked(self):
         print('Action: ')
         self.switch_window.emit()
@@ -77,4 +81,14 @@ class CL_main(QtWidgets.QMainWindow):
     def FN_MODIFY_PRIV(self):
         self.window_two = CL_privilage()
         self.window_two.FN_LOAD_MODFIY()
+        self.window_two.show()
+        
+    def FN_create_form_item(self):
+        self.window_two = CL_formItem()
+        self.window_two.FN_LOAD_CREATE()
+        self.window_two.show()
+
+    def FN_modify_form_item(self):
+        self.window_two = CL_formItem()
+        self.window_two.FN_LOAD_MODIFY()
         self.window_two.show()

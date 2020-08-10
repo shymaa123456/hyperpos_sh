@@ -33,18 +33,6 @@
    <property name="layoutDirection">
     <enum>Qt::LeftToRight</enum>
    </property>
-   <widget class="QMenu" name="menureciet">
-    <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
-    </property>
-    <property name="title">
-     <string>Roles</string>
-    </property>
-    <addaction name="separator"/>
-    <addaction name="QA_Create_Role"/>
-    <addaction name="QA_Modify_Role"/>
-    <addaction name="QA_Assign_User"/>
-   </widget>
    <widget class="QMenu" name="menuAuthorization">
     <property name="title">
      <string>Authorization</string>
@@ -57,34 +45,44 @@
      <addaction name="QA_Modify_User"/>
      <addaction name="QA_copy_User"/>
     </widget>
+    <widget class="QMenu" name="menuRoles">
+     <property name="title">
+      <string>Roles</string>
+     </property>
+     <addaction name="QA_Create_Role"/>
+     <addaction name="QA_Modify_Role"/>
+     <addaction name="QA_Assign_User"/>
+    </widget>
+    <widget class="QMenu" name="menuPrivilages">
+     <property name="title">
+      <string>Privilages</string>
+     </property>
+     <addaction name="QA_Create_Priv"/>
+     <addaction name="QA_Modify_Priv"/>
+    </widget>
+    <widget class="QMenu" name="menuType_Here">
+     <property name="title">
+      <string>Type Here</string>
+     </property>
+    </widget>
+    <widget class="QMenu" name="menuForms">
+     <property name="title">
+      <string>Forms</string>
+     </property>
+     <addaction name="QA_Create_Form"/>
+     <addaction name="QA_Modify_Form"/>
+     <addaction name="QA_Create_Form_Item"/>
+     <addaction name="actionDisplay_Form_Items"/>
+     <addaction name="actionAssign_Items"/>
+    </widget>
     <addaction name="menuUsers"/>
-   </widget>
-   <widget class="QMenu" name="menuMaster_Data">
-    <property name="title">
-     <string>Master Data</string>
-    </property>
+    <addaction name="menuRoles"/>
+    <addaction name="menuForms"/>
+    <addaction name="menuPrivilages"/>
     <addaction name="QA_Branch"/>
-   </widget>
-   <widget class="QMenu" name="menuprivilages">
-    <property name="title">
-     <string>Privilages</string>
-    </property>
-    <addaction name="separator"/>
-    <addaction name="QA_Create_Priv"/>
-    <addaction name="QA_Modify_Priv"/>
-   </widget>
-   <widget class="QMenu" name="menuForm">
-    <property name="title">
-     <string>Form</string>
-    </property>
-    <addaction name="QA_Create_Form"/>
-    <addaction name="QA_Modify_Form"/>
+    <addaction name="menuType_Here"/>
    </widget>
    <addaction name="menuAuthorization"/>
-   <addaction name="menuMaster_Data"/>
-   <addaction name="menureciet"/>
-   <addaction name="menuprivilages"/>
-   <addaction name="menuForm"/>
   </widget>
   <action name="actionsd">
    <property name="text">
@@ -187,6 +185,21 @@
   <action name="QA_Modify_Form">
    <property name="text">
     <string>Modify Form</string>
+   </property>
+  </action>
+  <action name="QA_Create_Form_Item">
+   <property name="text">
+    <string>Create Form Item</string>
+   </property>
+  </action>
+  <action name="actionDisplay_Form_Items">
+   <property name="text">
+    <string>Modify Form Item</string>
+   </property>
+  </action>
+  <action name="actionAssign_Items">
+   <property name="text">
+    <string>Assign Items</string>
    </property>
   </action>
  </widget>

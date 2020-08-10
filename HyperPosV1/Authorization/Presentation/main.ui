@@ -72,14 +72,15 @@
      <addaction name="QA_Create_Form"/>
      <addaction name="QA_Modify_Form"/>
      <addaction name="QA_Create_Form_Item"/>
-     <addaction name="actionDisplay_Form_Items"/>
-     <addaction name="actionAssign_Items"/>
+     <addaction name="QA_Modify_Form_Item"/>
+     <addaction name="QA_Display_Items"/>
     </widget>
     <addaction name="menuUsers"/>
     <addaction name="menuRoles"/>
     <addaction name="menuForms"/>
     <addaction name="menuPrivilages"/>
     <addaction name="QA_Branch"/>
+    <addaction name="actiontest"/>
     <addaction name="menuType_Here"/>
    </widget>
    <addaction name="menuAuthorization"/>
@@ -192,14 +193,19 @@
     <string>Create Form Item</string>
    </property>
   </action>
-  <action name="actionDisplay_Form_Items">
+  <action name="QA_Modify_Form_Item">
    <property name="text">
     <string>Modify Form Item</string>
    </property>
   </action>
-  <action name="actionAssign_Items">
+  <action name="QA_Display_Items">
    <property name="text">
-    <string>Assign Items</string>
+    <string>Display Form's Items</string>
+   </property>
+  </action>
+  <action name="actiontest">
+   <property name="text">
+    <string>test</string>
    </property>
   </action>
  </widget>

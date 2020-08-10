@@ -16,6 +16,7 @@ from privilage import CL_privilage
 
 
 from HyperPosV1.Authorization.Acess.formItem import CL_formItem
+from HyperPosV1.Authorization.Acess.test import CL_test
 
 
 class CL_main(QtWidgets.QMainWindow):
@@ -38,6 +39,18 @@ class CL_main(QtWidgets.QMainWindow):
         self.QA_Modify_Form.triggered.connect(self.FN_modify_form)
 
         self.QA_Create_Form_Item.triggered.connect(self.FN_create_form_item)
+        self.QA_Modify_Form_Item.triggered.connect(self.FN_modify_form_item)
+        self.QA_Display_Items.triggered.connect(self.FN_display_item)
+        self.actiontest.triggered.connect(self.FN_test)
+    def FN_display_item(self):
+        self.window_two = CL_formItem()
+        self.window_two.FN_DISPLAY_ITEMS()
+        self.window_two.show()
+    def FN_test(self):
+        self.window_two = CL_test()
+
+        self.window_two.load()
+        self.window_two.show()
     def FN_actionClicked(self):
         print('Action: ')
         self.switch_window.emit()

@@ -98,8 +98,11 @@ class CL_controller():
         self.login.switch_window.connect(self.FN_show_main)
         self.login.show()
 
+    def FN_show_main(self):
+        self.window = CL_main()
 
-
+        self.login.close()
+        self.window.show()
 def main():
     app = QtWidgets.QApplication(sys.argv)
     controller = CL_controller()

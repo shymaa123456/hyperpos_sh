@@ -11,8 +11,8 @@ import mysql.connector
 
 from form import CL_form
 from user import CL_user
-from Authorization.Acess.Role import CL_role
-from Authorization.Acess.privilage import CL_privilage
+from Role import CL_role
+from privilage import CL_privilage
 
 
 class CL_main(QtWidgets.QMainWindow):
@@ -55,7 +55,7 @@ class CL_main(QtWidgets.QMainWindow):
         self.window_two = CL_role()
         self.window_two.FN_LOAD_MODIFY()
         self.window_two.show()
-DD
+
     def FN_ASSIGN(self):
         self.window_two = CL_role()
         self.window_two.FN_ASSIGN()

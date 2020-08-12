@@ -59,6 +59,8 @@
      </property>
      <addaction name="QA_Create_Priv"/>
      <addaction name="QA_Modify_Priv"/>
+     <addaction name="QA_Create_Priv_Item"/>
+     <addaction name="QA_Modify_Priv_Item"/>
     </widget>
     <widget class="QMenu" name="menuType_Here">
      <property name="title">
@@ -206,6 +208,16 @@
   <action name="actiontest">
    <property name="text">
     <string>test</string>
+   </property>
+  </action>
+  <action name="QA_Create_Priv_Item">
+   <property name="text">
+    <string>Create Priv Item</string>
+   </property>
+  </action>
+  <action name="QA_Modify_Priv_Item">
+   <property name="text">
+    <string>Modify Priv Item</string>
    </property>
   </action>
  </widget>

@@ -16,6 +16,7 @@ from privilage import CL_privilage
 
 
 from HyperPosV1.Authorization.Acess.formItem import CL_formItem
+from HyperPosV1.Authorization.Acess.privilageItem import CL_privilageItem
 from HyperPosV1.Authorization.Acess.test import CL_test
 
 
@@ -35,6 +36,10 @@ class CL_main(QtWidgets.QMainWindow):
 
         self.QA_Create_Priv.triggered.connect(self.FN_CREATE_PRIV)
         self.QA_Modify_Priv.triggered.connect(self.FN_MODIFY_PRIV)
+        self.QA_Create_Priv_Item.triggered.connect(self.FN_CREATE_PRIV_ITEM)
+        self.QA_Modify_Priv_Item.triggered.connect(self.FN_MODIFY_PRIV_ITEM)
+
+
         self.QA_Create_Form.triggered.connect(self.FN_create_form)
         self.QA_Modify_Form.triggered.connect(self.FN_modify_form)
 
@@ -92,6 +97,15 @@ class CL_main(QtWidgets.QMainWindow):
         self.window_two.FN_LOAD_CREATE()
         self.window_two.show()
     def FN_MODIFY_PRIV(self):
+        self.window_two = CL_privilage()
+        self.window_two.FN_LOAD_MODFIY()
+        self.window_two.show()
+
+    def FN_CREATE_PRIV_ITEM(self):
+        self.window_two = CL_privilageItem()
+        self.window_two.FN_LOAD_CREATE()
+        self.window_two.show()
+    def FN_MODIFY_PRIV_ITEM(self):
         self.window_two = CL_privilage()
         self.window_two.FN_LOAD_MODFIY()
         self.window_two.show()

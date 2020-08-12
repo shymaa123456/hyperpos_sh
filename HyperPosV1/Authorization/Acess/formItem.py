@@ -16,10 +16,20 @@ class CL_formItem(QtWidgets.QDialog):
 
     def FN_DISPLAY_ITEMS (self):
         loadUi('../Presentation/displayFormItems.ui', self)
+        self.BTN_getFormItem.clicked.connect(self.FN_DISPLAY_FORM_ITEMS)
+        self.CMB_formId.currentIndexChanged.connect(self.FN_GET_FORMNAME)
+        self.FN_GET_FORMS()
+        self.FN_GET_FORMNAME()
+
+    def FN_DISPLAY_FORM_ITEMS(self):
+        self.w1.clear()
         connection = mysql.connector.connect(host='localhost', database='PosDB'
                                              , user='root', password='password', port='3306')
         mycursor = connection.cursor()
-        sql_select_query = "select ITEM_DESC , ITEM_STATUS from SYS_FORM_ITEM where FORM_ID = 2"
+        self.form = self.CMB_formId.currentText()
+
+        sql_select_query = "select ITEM_DESC , ITEM_STATUS from SYS_FORM_ITEM where FORM_ID = '"+self.form+"'"
+
         mycursor.execute(sql_select_query)
         records = mycursor.fetchall()
         for row_number, row_data in enumerate(records):

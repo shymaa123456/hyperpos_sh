@@ -13,10 +13,10 @@ from form import CL_form
 from user import CL_user
 from Role import CL_role
 from privilage import CL_privilage
+from branch import CL_branch
 
-
-from HyperPosV1.Authorization.Acess.formItem import CL_formItem
-
+#from HyperPosV1.Authorization.Acess.formItem import CL_formItem
+from formItem import CL_formItem
 
 class CL_main(QtWidgets.QMainWindow):
     switch_window = QtCore.pyqtSignal()
@@ -38,6 +38,9 @@ class CL_main(QtWidgets.QMainWindow):
         self.QA_Modify_Form.triggered.connect(self.FN_modify_form)
 
         self.QA_Create_Form_Item.triggered.connect(self.FN_create_form_item)
+        
+        self.QA_Branch.triggered.connect(self.FN_create_form_Branch)
+        
     def FN_actionClicked(self):
         print('Action: ')
         self.switch_window.emit()
@@ -92,3 +95,9 @@ class CL_main(QtWidgets.QMainWindow):
         self.window_two = CL_formItem()
         self.window_two.FN_LOAD_MODIFY()
         self.window_two.show()
+        
+    def FN_create_form_Branch(self):
+        self.window_two = CL_branch()
+        #self.window_two.FN_createBranch()
+        self.window_two.show()
+        

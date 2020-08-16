@@ -7,16 +7,12 @@ from PyQt5.QtGui import QPixmap
 from mysql.connector import Error
 from datetime import datetime
 import mysql.connector
-
+from user_module import CL_userModule
 
 class CL_user(QtWidgets.QDialog):
 
     def __init__(self):
         super(CL_user, self).__init__()
-
-
-
-
 
     def FN_LOAD_MODIFY(self):
         loadUi('../Presentation/modifyUser.ui', self)
@@ -80,10 +76,7 @@ class CL_user(QtWidgets.QDialog):
         sql = "UPDATE SYS_USER   set USER_NAME= %s ,  USER_PASSWORD= %s  ,  BRANCH_NO = %s, USER_FULLNAME = %s , USER_HR_ID = %s, USER_CHANGED_ON = %s , USER_CHENGED_BY = %s, USER_STATUS = %s, USER_TYPE_ID = %s where USER_id= %s "
 
 
-
-
-
-        val = (self.name  , self.password, self.branch, self.fullName,self.hrId, changeDate, '', self.status, self.userType , self.id)
+        val = (self.name  , self.password, self.branch, self.fullName,self.hrId, changeDate, CL_userModule.user_name, self.status, self.userType , self.id)
         print(val)
         mycursor.execute(sql, val)
         # mycursor.execute(sql)
@@ -125,7 +118,7 @@ class CL_user(QtWidgets.QDialog):
 
         # sql = "INSERT INTO SYS_USER (USER_ID,USER_NAME) VALUES (%s, %s)"
         val = (
-        self.id, self.branch, self.name, self.password, self.fullName, self.hrId, creationDate, '', '', '', self.status,
+        self.id, self.branch, self.name, self.password, self.fullName, self.hrId, creationDate, CL_userModule.user_name, '', '', self.status,
         self.userType)
         mycursor.execute(sql, val)
         # mycursor.execute(sql)

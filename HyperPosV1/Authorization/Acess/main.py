@@ -15,13 +15,13 @@ from Role import CL_role
 from privilage import CL_privilage
 
 
-from HyperPosV1.Authorization.Acess.formItem import CL_formItem
-from HyperPosV1.Authorization.Acess.privilageItem import CL_privilageItem
-from HyperPosV1.Authorization.Acess.test import CL_test
-
-#from HyperPosV1.Authorization.Acess.formItem import CL_formItem
 from formItem import CL_formItem
+from privilageItem import CL_privilageItem
+#from test import CL_test
 
+#from HyperPosV1.Authorization.Acess.formItem import CL_formItes
+from formItem import CL_formItem
+from branch import CL_branch
 class CL_main(QtWidgets.QMainWindow):
     switch_window = QtCore.pyqtSignal()
 
@@ -51,16 +51,18 @@ class CL_main(QtWidgets.QMainWindow):
 
         self.QA_Modify_Form_Item.triggered.connect(self.FN_modify_form_item)
         self.QA_Display_Items.triggered.connect(self.FN_display_item)
-        self.actiontest.triggered.connect(self.FN_test)
+ #       self.actiontest.triggered.connect(self.FN_test)
     def FN_display_item(self):
         self.window_two = CL_formItem()
         self.window_two.FN_DISPLAY_ITEMS()
         self.window_two.show()
+    """    
     def FN_test(self):
         self.window_two = CL_test()
 
         self.window_two.load()
         self.window_two.show()
+    """    
     def FN_actionClicked(self):
         print('Action: ')
         self.switch_window.emit()

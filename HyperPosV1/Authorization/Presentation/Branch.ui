@@ -13,19 +13,6 @@
   <property name="windowTitle">
    <string>Branch</string>
   </property>
-  <widget class="QLineEdit" name="QLE_branchCompany">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>70</y>
-     <width>171</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="placeholderText">
-    <string>Branch Company</string>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="QLE_branchDescA">
    <property name="geometry">
     <rect>
@@ -123,24 +110,11 @@
     <string>Branch Company</string>
    </property>
   </widget>
-  <widget class="QLabel" name="QLL_branchId">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>20</y>
-     <width>99</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Branch ID</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="CMB_branchId">
+  <widget class="QComboBox" name="CMB_branchCompany">
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>20</y>
+     <y>70</y>
      <width>86</width>
      <height>25</height>
     </rect>

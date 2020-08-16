@@ -16,12 +16,11 @@ class CL_branch(QtWidgets.QDialog):
         super(CL_branch, self).__init__()
         loadUi('../Presentation/Branch.ui', self)
         self.BTN_createBranch.clicked.connect(self.FN_createBranch)
-        self.CMB_branchId.addItems(["1","2","3"])
+        self.CMB_branchCompany.addItems(["zayed","asher","sphinx"])
         self.CMB_branchStatus.addItems(["0","1"])
         
     def FN_createBranch(self):       
-        self.branchId = self.CMB_branchId.currentText()
-        self.branchCompany = self.QLE_branchCompany.text()
+        self.branchCompany = self.CMB_branchCompany.currentText()
         self.branchDescA = self.QLE_branchDescA.text()
         self.branchDescE = self.QLE_branchDescE.text()
         self.branchAddress = self.QLE_branchAddress.text()
@@ -39,15 +38,16 @@ class CL_branch(QtWidgets.QDialog):
         connection = mysql.connector.connect(host='localhost',database='PosDB'
                                          ,user='root',password='password',port='3306')
         mycursor = connection.cursor()
-        #get max userid
-        #mycursor.execute("SELECT max(USER_ID) FROM SYS_USER")
-        #myresult = mycursor.fetchone()
+        #get max branch i
+        mycursor.execute("SELECT max(CAST(BRANCH_NO as SIGNED)) FROM BRANCH")
+        myresult = mycursor.fetchone()
+        if len(myresult) == 0:
+            self.branchId=1
 
-        #self.id=int(myresult[0])+1
-         
-        creationDate=str(datetime.today().strftime('%Y-%m-%d-%H:%M-%S'))
-         
-        print(creationDate)
+        else:
+            self.branchId=myresult[0]+1
+                  
+
          
         sql = "INSERT INTO BRANCH (BRANCH_NO, BRANCH_COMPANY, BRANCH_DESC_A, BRANCH_DESC_E, BRANCH_ADDRESS, BRANCH_CITY, BRANCH_TEL1, BRANCH_TEL2, BRANCH_FAX, BRANCH_EMAIL,BRANCH_NOTES, BRANCH_CHANGED_ON,BRANCH_CURRENCY, BRANCH_STATUS)         VALUES ( %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
          
@@ -61,5 +61,7 @@ class CL_branch(QtWidgets.QDialog):
         mycursor.close()
          
             
-        print(mycursor.rowcount, "record inserted.")     
+        print(mycursor.rowcount, "record inserted.") 
+
+        self.close()
  

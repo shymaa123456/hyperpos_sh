@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Priv</string>
   </property>
-  <widget class="QLabel" name="LB_roleName">
+  <widget class="QLabel" name="LB_roleId">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -29,10 +29,10 @@
     <enum>QFrame::NoFrame</enum>
    </property>
    <property name="text">
-    <string>role name</string>
+    <string>role Id</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="CMB_roleId">
+  <widget class="QComboBox" name="CMB_roleName">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -42,7 +42,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="LB_formName">
+  <widget class="QLabel" name="LB_formId">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -58,7 +58,7 @@
     <enum>QFrame::NoFrame</enum>
    </property>
    <property name="text">
-    <string>form name</string>
+    <string>form Id</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -74,7 +74,7 @@
     <string>Form</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="CMB_formId">
+  <widget class="QComboBox" name="CMB_formName">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -110,7 +110,7 @@
     <string>Role</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="CMB_actionId">
+  <widget class="QComboBox" name="CMB_actionName">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -133,7 +133,7 @@
     <string>Modify Privilage</string>
    </property>
   </widget>
-  <widget class="QLabel" name="LB_actionName">
+  <widget class="QLabel" name="LB_actionId">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -149,7 +149,7 @@
     <enum>QFrame::NoFrame</enum>
    </property>
    <property name="text">
-    <string>action</string>
+    <string>action Id</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="LE_id">
@@ -163,19 +163,6 @@
    </property>
    <property name="placeholderText">
     <string>id</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="BTN_getPrivilage">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>50</y>
-     <width>89</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string> Get Priv</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_9">

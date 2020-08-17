@@ -14,19 +14,6 @@ class CL_role(QtWidgets.QDialog):
     def __init__(self):
         super(CL_role, self).__init__()
 
-
-
-
-
-
-        # loadUi('../Presentation/assignUserToRole.ui', self)
-        # self.BTN_assignRole.clicked.connect(self.FN_ASSIGN_ROLE)
-        # self.CMB_userRoleStatus.addItems(["0", "1"])
-        # self.FN_GET_USERS()
-        # self.FN_GET_ROLES()
-        # self.CMB_userId.currentIndexChanged.connect(self.FN_GET_USERNAME)
-        # self.CMB_roleId.currentIndexChanged.connect(self.FN_GET_ROLENAME)
-
     def FN_ASSIGN(self):
 
         loadUi('../Presentation/assignUserToRole.ui', self)
@@ -34,11 +21,16 @@ class CL_role(QtWidgets.QDialog):
         self.CMB_userRoleStatus.addItems(["0", "1"])
         self.FN_GET_USERS()
         self.FN_GET_ROLES()
-        self.CMB_userId.currentIndexChanged.connect(self.FN_GET_USERNAME)
-        self.CMB_roleId.currentIndexChanged.connect(self.FN_GET_ROLENAME)
+        self.FN_GET_USERID()
+        self.FN_GET_ROLEID()
+        self.CMB_userName.currentIndexChanged.connect(self.FN_GET_USERID)
+        self.CMB_roleName.currentIndexChanged.connect(self.FN_GET_ROLEID)
     def FN_LOAD_MODIFY(self):
         loadUi('../Presentation/modifyRole.ui', self)
-        self.BTN_getRole.clicked.connect(self.FN_GET_ROLE)
+        self.FN_GET_ROLES()
+        self.FN_GET_ROLEID()
+        self.FN_GET_ROLE()
+        self.CMB_roleName.currentIndexChanged.connect( self.FN_GET_ROLE )
         self.BTN_modifyRole.clicked.connect(self.FN_MODIFY_ROLE)
         self.CMB_roleStatus.addItems(["0", "1"])
     def FN_LOAD_CREATE(self):
@@ -46,28 +38,28 @@ class CL_role(QtWidgets.QDialog):
         loadUi('../Presentation/createRole.ui', self)
         self.BTN_createRole.clicked.connect(self.FN_CREATE_ROLE)
         self.CMB_roleStatus.addItems(["0", "1"])
-    def FN_GET_USERNAME(self):
-        self.user = self.CMB_userId.currentText()
+    def FN_GET_USERID(self):
+        self.user = self.CMB_userName.currentText()
         connection = mysql.connector.connect(host='localhost', database='PosDB'
                                              , user='root', password='password', port='3306')
         mycursor = connection.cursor()
-        sql_select_query= "SELECT USER_NAME FROM SYS_USER WHERE USER_ID = %s"
+        sql_select_query= "SELECT USER_ID FROM SYS_USER WHERE USER_NAME = %s"
         x = (self.user,)
         mycursor.execute(sql_select_query, x)
         myresult = mycursor.fetchone()
-        self.LB_userName.setText(myresult [0])
+        self.LB_userID.setText(myresult [0])
 
-    def FN_GET_ROLENAME(self):
-        self.role = self.CMB_roleId.currentText()
+    def FN_GET_ROLEID(self):
+        self.role = self.CMB_roleName.currentText()
         connection = mysql.connector.connect(host='localhost', database='PosDB'
                                              , user='root', password='password', port='3306')
         mycursor = connection.cursor()
-        sql_select_query = "SELECT ROLE_NAME FROM SYS_ROLE WHERE ROLE_ID = %s"
+        sql_select_query = "SELECT ROLE_ID FROM SYS_ROLE WHERE ROLE_NAME = %s"
         x = (self.role,)
         mycursor.execute(sql_select_query, x)
 
         myresult = mycursor.fetchone()
-        self.LB_roleName.setText(myresult[0])
+        self.LB_roleID.setText(myresult[0])
 
     def FN_GET_USERS(self):
 
@@ -75,10 +67,10 @@ class CL_role(QtWidgets.QDialog):
                                              , user='root', password='password', port='3306')
         mycursor = connection.cursor()
 
-        mycursor.execute("SELECT USER_ID FROM SYS_USER order by USER_ID asc")
+        mycursor.execute("SELECT USER_NAME FROM SYS_USER order by USER_ID asc")
         records = mycursor.fetchall()
         for row in records:
-            self.CMB_userId.addItems([row[0]])
+            self.CMB_userName.addItems([row[0]])
 
         connection.commit()
         connection.close()
@@ -89,10 +81,10 @@ class CL_role(QtWidgets.QDialog):
                                              , user='root', password='password', port='3306')
         mycursor = connection.cursor()
 
-        mycursor.execute("SELECT ROLE_ID FROM SYS_ROLE order by ROLE_ID asc")
+        mycursor.execute("SELECT ROLE_NAME FROM SYS_ROLE order by ROLE_ID asc")
         records = mycursor.fetchall()
         for row in records:
-            self.CMB_roleId.addItems([row[0]])
+            self.CMB_roleName.addItems([row[0]])
 
         connection.commit()
         connection.close()
@@ -101,8 +93,8 @@ class CL_role(QtWidgets.QDialog):
 
 
         self.status = self.CMB_userRoleStatus.currentText()
-        self.user = self.CMB_userId.currentText()
-        self.role = self.CMB_roleId.currentText()
+        self.user = self.LB_userID.text()
+        self.role = self.LB_roleID.text()
 
         connection = mysql.connector.connect(host='localhost', database='PosDB'
                                              , user='root', password='password', port='3306')
@@ -139,8 +131,8 @@ class CL_role(QtWidgets.QDialog):
 
 
     def FN_GET_ROLE(self):
-
-        self.id = self.LE_id.text()
+        self.FN_GET_ROLEID()
+        self.id = self.LB_roleID.text()
 
         connection = mysql.connector.connect(host='localhost', database='PosDB'
                                              , user='root', password='password', port='3306')
@@ -161,7 +153,7 @@ class CL_role(QtWidgets.QDialog):
         print(mycursor.rowcount, "record retrieved.")
 
     def FN_MODIFY_ROLE(self):
-        self.id = self.LE_id.text()
+        self.id = self.LB_roleID.text()
         self.name = self.LE_name.text()
         self.desc = self.LE_DESC.text()
         self.status = self.CMB_roleStatus.currentText()

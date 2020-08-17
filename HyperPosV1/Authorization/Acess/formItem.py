@@ -21,6 +21,9 @@ class CL_formItem(QtWidgets.QDialog):
         self.FN_GET_FORMS()
         self.FN_GET_FORMNAME()
 
+
+
+
     def FN_DISPLAY_FORM_ITEMS(self):
         self.w1.clear()
         connection = mysql.connector.connect(host='localhost', database='PosDB'
@@ -45,43 +48,50 @@ class CL_formItem(QtWidgets.QDialog):
         loadUi('../Presentation/createFormItem.ui', self)
         self.BTN_createFormItem.clicked.connect(self.FN_CREATE_FORM_ITEM)
         self.CMB_formItemStatus.addItems(["0","1"])
-        self.CMB_formId.currentIndexChanged.connect(self.FN_GET_FORMNAME)
+        self.CMB_formName.currentIndexChanged.connect(self.FN_GET_FORMID)
         self.FN_GET_FORMS()
-        self.FN_GET_FORMNAME()
+        self.FN_GET_FORMID()
 
     def FN_LOAD_MODIFY(self):
         loadUi('../Presentation/modifyFormItem.ui', self)
-        self.BTN_getFormItem.clicked.connect(self.FN_GET_FORM_ITEM)
+
+
         self.BTN_modifyFormItem.clicked.connect(self.FN_MODIFY_FORM)
         self.CMB_formItemStatus.addItems(["0", "1"])
 
-        self.CMB_formItemName.currentIndexChanged.connect(self.FN_GET_FORMITEMID)
-        self.CMB_formId.currentIndexChanged.connect(self.FN_GET_FORMNAME)
+        self.CMB_formItemName.currentIndexChanged.connect(self.FN_GET_FORM_ITEM)
+        self.CMB_formName.currentIndexChanged.connect(self.FN_GET_FORMID)
         self.FN_GET_FORMItems()
+        self.FN_GET_FORM_ITEM()
 
     def FN_GET_FORMS(self):
+        self.CMB_formName.clear()
+        self.item=  self.LB_formItemID.text()
         connection = mysql.connector.connect(host='localhost', database='PosDB'
                                              , user='root', password='password', port='3306')
         mycursor = connection.cursor()
 
-        mycursor.execute("SELECT FORM_ID FROM SYS_FORM order by FORM_ID asc")
+        mycursor.execute("SELECT FORM_DESC FROM SYS_FORM as f  inner join SYS_FORM_ITEM as i on f.FORM_ID=i.FORM_ID"
+                         " WHERE i.ITEM_ID = '"+self.item+"' order by f.FORM_ID asc")
         records = mycursor.fetchall()
         for row in records:
-            self.CMB_formId.addItems([row[0]])
+            self.CMB_formName.addItems([row[0]])
         connection.close()
         mycursor.close()
 
-    def FN_GET_FORMNAME(self):
-        self.form = self.CMB_formId.currentText()
+    def FN_GET_FORMID(self):
+        self.form= self.CMB_formName.currentText()
+
         connection = mysql.connector.connect(host='localhost', database='PosDB'
                                              , user='root', password='password', port='3306')
         mycursor = connection.cursor()
-        sql_select_query = "SELECT FORM_DESC FROM SYS_FORM WHERE FORM_ID = %s"
+        sql_select_query = "SELECT FORM_ID FROM SYS_FORM WHERE FORM_DESC = %s"
         x = (self.form,)
         mycursor.execute(sql_select_query, x)
 
         myresult = mycursor.fetchone()
-        self.LB_formName.setText(myresult[0])
+        if mycursor.rowcount > 0:
+            self.LB_formID.setText(myresult[0])
 
         connection.close()
         mycursor.close()
@@ -96,7 +106,7 @@ class CL_formItem(QtWidgets.QDialog):
         mycursor.execute(sql_select_query, x)
 
         myresult = mycursor.fetchone()
-        self.LB_formItemId.setText(myresult[0])
+        self.LB_formItemID.setText(myresult[0])
 
         connection.close()
         mycursor.close()
@@ -146,19 +156,19 @@ class CL_formItem(QtWidgets.QDialog):
 
         mycursor.execute("SELECT ITEM_DESC FROM SYS_FORM_ITEM order by FORM_ID asc")
         records = mycursor.fetchall()
-        print(records)
+
         for row in records:
-            print(row[0])
+
             self.CMB_formItemName.addItems([row[0]])
 
 
         connection.close()
         mycursor.close()
     def FN_GET_FORM_ITEM(self):
-
-        self.id = self.LB_formItemId.text()
+        self.FN_GET_FORMITEMID()
+        self.id = self.LB_formItemID.text()
         self.FN_GET_FORMS()
-        self.FN_GET_FORMNAME()
+        self.FN_GET_FORMID()
         connection = mysql.connector.connect(host='localhost', database='PosDB'
                                              , user='root', password='password', port='3306')
         mycursor = connection.cursor()
@@ -168,7 +178,7 @@ class CL_formItem(QtWidgets.QDialog):
         record = mycursor.fetchone()
 
         self.LE_desc.setText(record[2])
-        self.CMB_formId.setCurrentText(record[1])
+        self.CMB_formName.setCurrentText(record[1])
 
         self.CMB_formItemStatus.setCurrentText(record[3])
 
@@ -178,8 +188,8 @@ class CL_formItem(QtWidgets.QDialog):
         print(mycursor.rowcount, "record retrieved.")
 
     def FN_MODIFY_FORM(self):
-        self.id = self.LB_formItemId.text()
-        self.form = self.CMB_formId.currentText()
+        self.id = self.LB_formItemID.text()
+        self.form = self.LB_formID.text()
         self.desc = self.LE_desc.text()
         self.status = self.CMB_formItemStatus.currentText()
 

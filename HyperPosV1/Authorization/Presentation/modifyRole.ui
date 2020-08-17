@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>240</y>
+     <y>220</y>
      <width>86</width>
      <height>25</height>
     </rect>
@@ -27,7 +27,7 @@
    <property name="geometry">
     <rect>
      <x>260</x>
-     <y>260</y>
+     <y>240</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -40,7 +40,7 @@
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>100</y>
+     <y>80</y>
      <width>171</width>
      <height>25</height>
     </rect>
@@ -53,7 +53,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>150</y>
+     <y>130</y>
      <width>99</width>
      <height>29</height>
     </rect>
@@ -66,7 +66,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>100</y>
+     <y>80</y>
      <width>99</width>
      <height>29</height>
     </rect>
@@ -79,39 +79,13 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>240</y>
+     <y>220</y>
      <width>67</width>
      <height>17</height>
     </rect>
    </property>
    <property name="text">
     <string>Status</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="LE_id">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>10</y>
-     <width>171</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="placeholderText">
-    <string>id</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="BTN_getRole">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>50</y>
-     <width>89</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string> Get Role</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_9">
@@ -131,10 +105,39 @@
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>150</y>
+     <y>130</y>
      <width>211</width>
      <height>51</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="CMB_roleName">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>10</y>
+     <width>121</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LB_roleID">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>20</y>
+     <width>141</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="text">
+    <string>role id</string>
    </property>
   </widget>
  </widget>

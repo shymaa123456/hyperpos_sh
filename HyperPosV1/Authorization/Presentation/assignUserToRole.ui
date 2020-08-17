@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>265</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Assign</string>
   </property>
-  <widget class="QComboBox" name="CMB_userId">
+  <widget class="QComboBox" name="CMB_userName">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -49,7 +49,7 @@
     <string>Role</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="CMB_roleId">
+  <widget class="QComboBox" name="CMB_roleName">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -95,7 +95,7 @@
     <string>Assign Role</string>
    </property>
   </widget>
-  <widget class="QLabel" name="LB_userName">
+  <widget class="QLabel" name="LB_userID">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -111,10 +111,10 @@
     <enum>QFrame::NoFrame</enum>
    </property>
    <property name="text">
-    <string>user name</string>
+    <string>user id</string>
    </property>
   </widget>
-  <widget class="QLabel" name="LB_roleName">
+  <widget class="QLabel" name="LB_roleID">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -130,7 +130,7 @@
     <enum>QFrame::NoFrame</enum>
    </property>
    <property name="text">
-    <string>role name</string>
+    <string>role id</string>
    </property>
   </widget>
  </widget>

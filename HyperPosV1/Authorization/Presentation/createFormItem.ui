@@ -26,7 +26,7 @@
     <string>Status</string>
    </property>
   </widget>
-  <widget class="QLabel" name="LB_formName">
+  <widget class="QLabel" name="LB_formID">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -42,10 +42,10 @@
     <enum>QFrame::NoFrame</enum>
    </property>
    <property name="text">
-    <string>form name</string>
+    <string>Form ID</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="CMB_formId">
+  <widget class="QComboBox" name="CMB_formName">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -83,7 +83,7 @@
     <rect>
      <x>230</x>
      <y>170</y>
-     <width>121</width>
+     <width>131</width>
      <height>31</height>
     </rect>
    </property>

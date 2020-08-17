@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>508</width>
-    <height>439</height>
+    <height>408</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,19 +43,6 @@
    </property>
    <property name="placeholderText">
     <string>password</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="BTN_getUser">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>50</y>
-     <width>89</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string> Get User</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -240,17 +227,33 @@
     <string>User ID</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="LE_id">
+  <widget class="QComboBox" name="CMB_userName">
    <property name="geometry">
     <rect>
      <x>150</x>
      <y>10</y>
-     <width>171</width>
+     <width>121</width>
      <height>25</height>
     </rect>
    </property>
-   <property name="placeholderText">
-    <string>id</string>
+  </widget>
+  <widget class="QLabel" name="LB_userID">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>10</y>
+     <width>151</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="text">
+    <string>user id</string>
    </property>
   </widget>
  </widget>

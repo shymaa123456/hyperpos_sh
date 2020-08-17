@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>210</y>
+     <y>180</y>
      <width>86</width>
      <height>25</height>
     </rect>
@@ -27,7 +27,7 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>260</y>
+     <y>230</y>
      <width>131</width>
      <height>31</height>
     </rect>
@@ -36,14 +36,14 @@
     <string>Modify Form Item</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="CMB_formId">
+  <widget class="QComboBox" name="CMB_formName">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>120</y>
+     <y>90</y>
      <width>86</width>
      <height>25</height>
     </rect>
@@ -53,7 +53,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>160</y>
+     <y>130</y>
      <width>99</width>
      <height>29</height>
     </rect>
@@ -66,7 +66,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>120</y>
+     <y>90</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -79,7 +79,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>210</y>
+     <y>180</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -88,14 +88,14 @@
     <string>Status</string>
    </property>
   </widget>
-  <widget class="QLabel" name="LB_formName">
+  <widget class="QLabel" name="LB_formID">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>120</y>
+     <y>90</y>
      <width>141</width>
      <height>17</height>
     </rect>
@@ -104,20 +104,20 @@
     <enum>QFrame::NoFrame</enum>
    </property>
    <property name="text">
-    <string>form name</string>
+    <string>Form ID</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="LE_desc">
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>160</y>
+     <y>130</y>
      <width>271</width>
      <height>21</height>
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="LB_formItemId">
+  <widget class="QLabel" name="LB_formItemID">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -141,12 +141,12 @@
     <rect>
      <x>10</x>
      <y>20</y>
-     <width>67</width>
+     <width>71</width>
      <height>17</height>
     </rect>
    </property>
    <property name="text">
-    <string>Item</string>
+    <string>Form Item</string>
    </property>
   </widget>
   <widget class="QComboBox" name="CMB_formItemName">
@@ -157,19 +157,6 @@
      <width>86</width>
      <height>25</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="BTN_getFormItem">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>60</y>
-     <width>131</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Get Form Item</string>
    </property>
   </widget>
  </widget>

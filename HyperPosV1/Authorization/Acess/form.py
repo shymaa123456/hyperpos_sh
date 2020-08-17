@@ -21,13 +21,41 @@ class CL_form(QtWidgets.QDialog):
 
     def FN_LOAD_MODIFY(self):
         loadUi('../Presentation/modifyForm.ui', self)
-        self.BTN_getForm.clicked.connect(self.FN_GET_FORM)
+
+        self.FN_GET_FORMS()
+        self.FN_GET_FORMID()
+        self.FN_GET_FORM()
+        self.CMB_formName.currentIndexChanged.connect( self.FN_GET_FORM )
         self.BTN_modifyForm.clicked.connect(self.FN_MODIFY_FORM)
         self.CMB_formStatus.addItems(["0", "1"])
+    def FN_GET_FORMS(self):
+        connection = mysql.connector.connect(host='localhost', database='PosDB'
+                                             , user='root', password='password', port='3306')
+        mycursor = connection.cursor()
 
+        mycursor.execute("SELECT FORM_DESC FROM SYS_FORM order by FORM_ID asc")
+        records = mycursor.fetchall()
+        for row in records:
+            self.CMB_formName.addItems([row[0]])
+        connection.close()
+        mycursor.close()
+    def FN_GET_FORMID(self):
+        self.form = self.CMB_formName.currentText()
+        connection = mysql.connector.connect(host='localhost', database='PosDB'
+                                             , user='root', password='password', port='3306')
+        mycursor = connection.cursor()
+        sql_select_query = "SELECT FORM_ID FROM SYS_FORM WHERE FORM_DESC = %s"
+        x = (self.form,)
+        mycursor.execute(sql_select_query, x)
+
+        myresult = mycursor.fetchone()
+        self.LB_formID.setText(myresult[0])
+
+        connection.close()
+        mycursor.close()
     def FN_GET_FORM(self):
-
-        self.id = self.LE_id.text()
+        self.FN_GET_FORMID()
+        self.id = self.LB_formID.text()
 
         connection = mysql.connector.connect(host='localhost', database='PosDB'
                                              , user='root', password='password', port='3306')
@@ -49,13 +77,13 @@ class CL_form(QtWidgets.QDialog):
         print(mycursor.rowcount, "record retrieved.")
 
     def FN_MODIFY_FORM(self):
-        self.id = self.LE_id.text()
+        self.id = self.LB_formID.text()
         self.desc = self.LE_desc.text()
         self.type = self.LE_type.text()
         self.status = self.CMB_formStatus.currentText()
         self.help = self.LE_help.text()
 
-        #         connection = mysql.connector.connect(host='localhost',database='test',user='shelal',password='2ybQvkZbNijIyq2J',port='3306')
+        #connection = mysql.connector.connect(host='localhost',database='test',user='shelal',password='2ybQvkZbNijIyq2J',port='3306')
         connection = mysql.connector.connect(host='localhost', database='PosDB'
                                              , user='root', password='password', port='3306')
 
@@ -64,10 +92,6 @@ class CL_form(QtWidgets.QDialog):
         changeDate = str(datetime.today().strftime('%Y-%m-%d-%H:%M-%S'))
 
         sql = "UPDATE SYS_FORM  set FORM_DESC= %s ,FORM_TYPE= %s  , FORM_STATUS = %s, FORM_HELP = %s where FORM_id= %s "
-
-
-
-
 
         val = (self.desc  , self.type, self.status, self.help, self.id)
 

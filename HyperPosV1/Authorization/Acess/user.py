@@ -20,8 +20,10 @@ class CL_user(QtWidgets.QDialog):
 
     def FN_LOAD_MODIFY(self):
         loadUi('../Presentation/modifyUser.ui', self)
-
-        self.BTN_getUser.clicked.connect(self.FN_GET_USER)
+        self.FN_GET_USERS()
+        self.FN_GET_USERID()
+        self.FN_GET_USER()
+        self.CMB_userName.currentIndexChanged.connect( self.FN_GET_USER )
         self.BTN_modifyUser.clicked.connect(self.FN_MODIFY_USER)
         self.CMB_branch.addItems(["1", "2", "3"])
         self.CMB_userType.addItems(["1", "2", "3"])
@@ -36,8 +38,8 @@ class CL_user(QtWidgets.QDialog):
         self.CMB_userType.addItems(["1","2","3"])
         self.CMB_userStatus.addItems(["0","1"])
     def FN_GET_USER(self):
-
-        self.id = self.LE_id.text()
+        self.FN_GET_USERID()
+        self.id = self.LB_userID.text()
 
         connection = mysql.connector.connect(host='localhost', database='PosDB'
                                              , user='root', password='password', port='3306')
@@ -78,11 +80,6 @@ class CL_user(QtWidgets.QDialog):
         changeDate = str(datetime.today().strftime('%Y-%m-%d-%H:%M-%S'))
 
         sql = "UPDATE SYS_USER   set USER_NAME= %s ,  USER_PASSWORD= %s  ,  BRANCH_NO = %s, USER_FULLNAME = %s , USER_HR_ID = %s, USER_CHANGED_ON = %s , USER_CHENGED_BY = %s, USER_STATUS = %s, USER_TYPE_ID = %s where USER_id= %s "
-
-
-
-
-
         val = (self.name  , self.password, self.branch, self.fullName,self.hrId, changeDate, '', self.status, self.userType , self.id)
         print(val)
         mycursor.execute(sql, val)
@@ -95,6 +92,31 @@ class CL_user(QtWidgets.QDialog):
         print(mycursor.rowcount, "record Modified.")
 
         self.close()
+
+    def FN_GET_USERS(self):
+
+        connection = mysql.connector.connect( host='localhost', database='PosDB'
+                                              , user='root', password='password', port='3306' )
+        mycursor = connection.cursor()
+
+        mycursor.execute( "SELECT USER_NAME FROM SYS_USER order by USER_ID asc" )
+        records = mycursor.fetchall()
+        for row in records:
+            self.CMB_userName.addItems( [row[0]] )
+
+        connection.commit()
+        connection.close()
+        mycursor.close()
+    def FN_GET_USERID(self):
+        self.user = self.CMB_userName.currentText()
+        connection = mysql.connector.connect(host='localhost', database='PosDB'
+                                             , user='root', password='password', port='3306')
+        mycursor = connection.cursor()
+        sql_select_query= "SELECT USER_ID FROM SYS_USER WHERE USER_NAME = %s"
+        x = (self.user,)
+        mycursor.execute(sql_select_query, x)
+        myresult = mycursor.fetchone()
+        self.LB_userID.setText(myresult [0])
 
     def FN_CREATE_USER(self):
         self.name = self.LE_name.text()
